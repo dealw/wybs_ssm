@@ -1,0 +1,6 @@
+# Project exclude paths
+/wy_ssm_dao/target/
+/wy_ssm_entity/target/
+/wy_ssm_service/target/
+/wy_ssm_utils/target/
+/wy_ssm_web/target/
