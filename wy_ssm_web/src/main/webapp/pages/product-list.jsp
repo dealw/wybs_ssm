@@ -234,7 +234,10 @@
                                     <th>产品价格</th>
                                     <th>产品描述</th>
                                     <th>状态</th>
+                                    <security:authorize
+                                            access="hasAnyRole('ADMINISTRATOR','MANAGER','EXECUTIVE','USER')">
                                     <th>操作</th>
+                                    </security:authorize>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -257,7 +260,7 @@
                                         <td class="text-center">${product.productStatusStr }</td>
                                         <td class="text-center">
                                             <security:authorize
-                                                    access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
+                                                    access="hasAnyRole('ADMINISTRATOR','MANAGER','EXECUTIVE')">
                                                 <button type="button" class="btn bg-olive btn-xs"
                                                         onclick="location.href='${pageContext.request.contextPath}/product/revise.do?id=${product.id}'">
                                                     编辑</button>
