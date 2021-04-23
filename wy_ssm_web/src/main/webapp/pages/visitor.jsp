@@ -11,13 +11,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
-    <title><security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
-        企业权限管理系统
-    </security:authorize>
-        <security:authorize access="hasRole('USER')">
-            旅游网
-        </security:authorize></title>
+    <title>所有产品</title>
     <meta name="description" content="AdminLTE2定制版">
     <meta name="keywords" content="AdminLTE2定制版">
 
@@ -146,18 +140,13 @@
 <body class="hold-transition skin-purple sidebar-mini">
 
 <div class="wrapper">
-
-    <!-- 页面头部 -->
-    <jsp:include page="header.jsp"></jsp:include>
-    <!-- 页面头部 /-->
-    <!-- 导航侧栏 -->
-    <jsp:include page="aside.jsp"></jsp:include>
-    <!-- 导航侧栏 /-->
-
-    <!-- 内容区域 -->
-    <!-- @@master = admin-layout.html-->
-    <!-- @@block = content -->
-
+    <aside class="main-sidebar" >
+        <h3 style="color: whitesmoke;margin-left: 12px">旅游产品信息</h3>
+        <section class="sidebar">
+            <div style="color: whitesmoke;margin-top: 60px;margin-left: 40px;font-size: 20px;;letter-spacing: 3px">简介:此页面展示</div>
+            <p style="font-size: 20px;color: whitesmoke;letter-spacing: 11px;margin-left: 4px">旅游网的所有产品信息,包括产品编号、名称、出发城市、出发时间、价格、描述和状态等信息.</p>
+        </section>
+    </aside>
     <div class="content-wrapper">
         <security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
             <!-- 内容头部 -->
@@ -226,7 +215,6 @@
                                                 id="selall" type="checkbox" class="icheckbox_square-blue">
                                         </th>
                                     </security:authorize>
-                                    <th>ID</th>
                                     <th>编号</th>
                                     <th>产品名称</th>
                                     <th>出发城市</th>
@@ -234,7 +222,6 @@
                                     <th>产品价格</th>
                                     <th>产品描述</th>
                                     <th>状态</th>
-                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -247,7 +234,6 @@
                                                 access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
                                             <td><input name="ids" type="checkbox" value="${product.id}" id="ids"></td>
                                         </security:authorize>
-                                        <td>${product.id }</td>
                                         <td>${product.productNum }</td>
                                         <td>${product.productName }</td>
                                         <td>${product.cityName }</td>
@@ -255,28 +241,6 @@
                                         <td class="text-center">${product.productPrice }</td>
                                         <td>${product.productDesc }</td>
                                         <td class="text-center">${product.productStatusStr }</td>
-                                        <td class="text-center">
-                                            <security:authorize
-                                                    access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
-                                                <button type="button" class="btn bg-olive btn-xs"
-                                                        onclick="location.href='${pageContext.request.contextPath}/product/revise.do?id=${product.id}'">
-                                                    编辑</button>
-                                            </security:authorize>
-                                            <security:authorize access="hasRole('USER')">
-                                                <c:choose>
-                                                    <c:when test="${product.productStatus==0}">
-                                                        <button type="button" class="btn bg-gray btn-xs">未开放</button>
-                                                    </c:when>
-                                                    <c:when test="${product.productStatus==1}">
-                                                        <button type="button" class="btn bg-olive btn-xs"
-                                                                onclick="location.href='${pageContext.request.contextPath}/product/travelleradd.do?id=${product.id}'">
-                                                            订购
-                                                        </button>
-                                                    </c:when>
-                                                </c:choose>
-
-                                            </security:authorize>
-                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -322,18 +286,18 @@
                         <ul class="pagination">
                             <li>
                                 <c:if test="${flag==1}">
-                                    <a href="${pageContext.request.contextPath}/product/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                                    <a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
                                 </c:if>
                                 <c:if test="${flag==0}">
-                                    <a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                                    <a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
                                 </c:if>
                             </li>
                             <li>
                                 <c:if test="${flag==1}">
-                                    <a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
+                                    <a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
                                 </c:if>
                                 <c:if test="${flag==0}">
-                                    <a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
+                                    <a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
                                 </c:if>
                             </li>
                             <%--展示页码--%>
@@ -341,10 +305,10 @@
                                 <c:forEach begin="${pageInfo.pageNum}" end="${pageInfo.pages}" var="cur">
                                     <li>
                                         <c:if test="${flag==1}">
-                                            <a href="${pageContext.request.contextPath}/product/findAll.do?page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
+                                            <a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
                                         </c:if>
                                         <c:if test="${flag==0}">
-                                            <a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
+                                            <a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
                                         </c:if>
                                     </li>
                                 </c:forEach>
@@ -353,26 +317,26 @@
                                 <c:forEach begin="${pageInfo.pageNum}" end="${pageInfo.pageNum+4}" var="cur">
                                     <li>
                                         <c:if test="${flag==1}">
-                                            <a href="${pageContext.request.contextPath}/product/findAll.do?page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
+                                            <a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
                                         </c:if>
                                         <c:if test="${flag==0}">
-                                            <a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
+                                            <a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${cur}&size=${pageInfo.pageSize}">${cur}</a>
                                         </c:if>
                                     </li>
                                 </c:forEach>
                             </c:if>
                             <c:if test="${flag==1}">
-                                <li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                             </c:if>
                             <c:if test="${flag==0}">
-                                <li><a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                             </c:if>
                             <li>
                                 <c:if test="${flag==1}">
-                                    <a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                                    <a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
                                 </c:if>
                                 <c:if test="${flag==0}">
-                                    <a href="${pageContext.request.contextPath}/product/searchByName.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                                    <a href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name=<%=URLEncoder.encode(request.getParameter("name"))%>&page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
                                 </c:if>
                             </li>
                         </ul>
@@ -491,7 +455,7 @@
     $(function (){
         $("#search").keydown(function (event){
             if(event.keyCode==13){
-                location.href="${pageContext.request.contextPath}/product/searchByName.do?name="+encodeURI(encodeURI($("#search").val()));
+                location.href="${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name="+encodeURI(encodeURI($("#search").val()));
             }
         });
     });
@@ -508,7 +472,7 @@
         var pageSize = $("#changePageSize").val();
 
         //向服务器发送请求，改变没页显示条数
-        location.href = "${pageContext.request.contextPath}/product/searchByName.do?name="+encodeURI($("#name").val())+"&page=1&size="
+        location.href = "${pageContext.request.contextPath}/product/searchByNameFromVistitor.do?name="+encodeURI($("#name").val())+"&page=1&size="
             + pageSize;
     }
 

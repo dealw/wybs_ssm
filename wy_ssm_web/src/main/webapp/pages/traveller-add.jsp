@@ -13,8 +13,6 @@
 	<security:authorize access="hasRole('USER')">
 		旅游网
 	</security:authorize></title>
-<meta name="description" content="AdminLTE2定制版">
-<meta name="keywords" content="AdminLTE2定制版">
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -161,10 +159,11 @@
 								<option value="2">其他</option>
 							</select>
 						</div>
-							<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>
 					</div>
 				</div>
-				 <!--工具栏-->
+					<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>
+
+					<!--工具栏-->
 				<div class="box-tools text-center">
 					<button type="submit" class="btn bg-maroon">保存</button>
 					<button type="button" class="btn bg-default"
@@ -314,7 +313,7 @@
 					'\t\t\t\t\t\t\t\t<option value="1">儿童</option>\n' +
 					'\t\t\t\t\t\t\t</select>\n' +
 					'\t\t\t\t\t\t</div>\n' +
-					'\t\t\t\t\t\t<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>\n' +
+					// '\t\t\t\t\t\t<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>\n' +
 					'\t\t\t\t\t</div>');
 		}
 		$(document).ready(function() {

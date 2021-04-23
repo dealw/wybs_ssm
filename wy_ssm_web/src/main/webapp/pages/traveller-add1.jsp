@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <!-- 页面meta -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-<title>
-	<security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
+<title><security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
 	企业权限管理系统
-	</security:authorize>
+</security:authorize>
 	<security:authorize access="hasRole('USER')">
 		旅游网
-	</security:authorize>
-</title>
+	</security:authorize></title>
 <meta name="description" content="AdminLTE2定制版">
 <meta name="keywords" content="AdminLTE2定制版">
 
@@ -23,72 +20,7 @@
 <meta
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 	name="viewport">
-<!-- Bootstrap 3.3.6 -->
-<!-- Font Awesome -->
-<!-- Ionicons -->
-<!-- iCheck -->
-<!-- Morris chart -->
-<!-- jvectormap -->
-<!-- Date Picker -->
-<!-- Daterange picker -->
-<!-- Bootstrap time Picker -->
-<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.css">-->
-<!-- bootstrap wysihtml5 - text editor -->
-<!--数据表格-->
-<!-- 表格树 -->
-<!-- select2 -->
-<!-- Bootstrap Color Picker -->
-<!-- bootstrap wysihtml5 - text editor -->
-<!--bootstrap-markdown-->
-<!-- Theme style -->
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-<!-- Ion Slider -->
-<!-- ion slider Nice -->
-<!-- bootstrap slider -->
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 
-<!-- jQuery 2.2.3 -->
-<!-- jQuery UI 1.11.4 -->
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<!-- Bootstrap 3.3.6 -->
-<!-- Morris.js charts -->
-<!-- Sparkline -->
-<!-- jvectormap -->
-<!-- jQuery Knob Chart -->
-<!-- daterangepicker -->
-<!-- datepicker -->
-<!-- Bootstrap WYSIHTML5 -->
-<!-- Slimscroll -->
-<!-- FastClick -->
-<!-- iCheck -->
-<!-- AdminLTE App -->
-<!-- 表格树 -->
-<!-- select2 -->
-<!-- bootstrap color picker -->
-<!-- bootstrap time picker -->
-<!--<script src="${pageContext.request.contextPath}/${pageContext.request.contextPath}/${pageContext.request.contextPath}/plugins/timepicker/bootstrap-timepicker.min.js"></script>-->
-<!-- Bootstrap WYSIHTML5 -->
-<!--bootstrap-markdown-->
-<!-- CK Editor -->
-<!-- InputMask -->
-<!-- DataTables -->
-<!-- ChartJS 1.0.1 -->
-<!-- FLOT CHARTS -->
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<!-- jQuery Knob -->
-<!-- Sparkline -->
-<!-- Morris.js charts -->
-<!-- Ion Slider -->
-<!-- Bootstrap slider -->
-<!-- 页面meta /-->
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
@@ -132,115 +64,125 @@
 	href="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.skinNice.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap-slider/slider.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
 </head>
-<style>
-	.ic{
-		margin-top: 20px;
-	}
-</style>
-<body class="hold-transition skin-blue sidebar-mini">
+
+<body class="hold-transition skin-purple sidebar-mini">
 
 	<div class="wrapper">
 
 		<!-- 页面头部 -->
 		<jsp:include page="header.jsp"></jsp:include>
-			<!-- 页面头部 /-->
-
+		<!-- 页面头部 /-->
 		<!-- 导航侧栏 -->
 		<jsp:include page="aside.jsp"></jsp:include>
 		<!-- 导航侧栏 /-->
 
 		<!-- 内容区域 -->
-		<div class="content-wrapper" >
-			<security:authorize access="hasRole('ADMINISTRATOR')">
-			<div class="col-md-3 col-sm-6 col-xs-12"  style="margin-top: 30px">
-				<div class="info-box">
-					<span class="info-box-icon bg-aqua-active"><i class="ion ion-android-contacts ic"></i></span>
+		<div class="content-wrapper">
 
-					<div class="info-box-content">
-						<span class="info-box-text">账户数</span>
-						<span class="info-box-number" id="users"></span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12" style="margin-top: 30px">
-				<div class="info-box">
-					<span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline ic" ></i></span>
+			<!-- 内容头部 -->
+			<section class="content-header">
+			<h1>
+				用户管理 <small>用户表单</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
+						class="fa fa-dashboard"></i> 首页</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
+				<li class="active">用户表单</li>
+			</ol>
+			</section>
+			<!-- 内容头部 /-->
 
-					<div class="info-box-content">
-						<span class="info-box-text">游客数</span>
-						<span class="info-box-number" id="travellers"></span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-
-				<!-- /.info-box -->
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12"  style="margin-top: 30px">
-				<div class="info-box">
-					<span class="info-box-icon bg-green"><i class="ion ion-android-cart ic"></i></span>
-
-					<div class="info-box-content">
-						<span class="info-box-text">订单数</span>
-						<span class="info-box-number" id="orders"></span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			<div class="col-md-3 col-sm-6 col-xs-12"  style="margin-top: 30px">
-				<div class="info-box">
-					<span class="info-box-icon bg-red"><i class="ion  ion-ios-star ic"></i></span>
-					<div class="info-box-content">
-						<span class="info-box-text">产品数</span>
-						<span class="info-box-number" id="products"></span>
-					</div>
-					<!-- /.info-box-content -->
-				</div>
-				<!-- /.info-box -->
-			</div>
-			</security:authorize>
-			<security:authorize access="hasAnyRole('USER','MANAGER','SALESPERSON','EXECUTIVE')">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<img src="${pageContext.request.contextPath}/img/l1.jpg" style="width: 100%">
+			<form action="${pageContext.request.contextPath}/travller/save.do"
+				method="post">
+				<input type="hidden" name="productId" value="${productId}">
+				<!-- 正文区域 -->
+				<section class="content">
+				<!--游客信息-->
+				<div class="panel panel-default" id="traveller">
+					<div class="panel-heading">游客信息</div>
+					<div class="row data-type">
+						<div class="col-md-2 rowHeight2x title">备注</div>
+						<div class="col-md-10 rowHeight2x data">
+							<textarea   rows="2" class="form-control" name="desc"
+								   placeholder="备注" value="">
+							</textarea>
 						</div>
-						<div class="item">
-							<img src="${pageContext.request.contextPath}/img/l2.jpg"  style="width: 100%;height: 100%">
+						<div class="col-md-2 title">游客姓名</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="travellers[0].name"
+								placeholder="游客姓名" value="">
 						</div>
-						<div class="item">
-							<img src="${pageContext.request.contextPath}/img/l3.jpg"  style="width: 100%;height: 100%">
+						<div class="col-md-2 title">电话号码</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="travellers[0].phoneNum"
+								   placeholder="电话号码" value="">
 						</div>
-						<div class="item">
-							<img src="${pageContext.request.contextPath}/img/l4.jpg"  style="width: 100%;height: 100%">
+						<div class="col-md-2 title">证件类型</div>
+						<div class="col-md-4 data">
+							<select class="form-control select2" style="width: 100%"
+									name="travellers[0].credentialsType">
+								<option value="0" selected="selected">身份证</option>
+								<option value="1">护照</option>
+								<option value="2">军官证</option>
+							</select>
 						</div>
+						<div class="col-md-2 title">证件号码</div>
+						<div class="col-md-4 data">
+							<input type="text" class="form-control" name="travellers[0].credentialsNum"
+								   placeholder="证件号码" value="">
+						</div>
+						<div class="col-md-2 title">性别</div>
+						<div class="col-md-2 data">
+							<select class="form-control select2" style="width: 100%"
+									name="travellers[0].sex">
+								<option value="男" selected="selected">男</option>
+								<option value="女">女</option>
+							</select>
+						</div>
+						<div class="col-md-2 title">游客类型</div>
+						<div class="col-md-2 data">
+							<select class="form-control select2" style="width: 100%"
+									name="travellers[0].travellerType">
+								<option value="0" selected="selected">成人</option>
+								<option value="1">儿童</option>
+							</select>
+						</div>
+						<div class="col-md-2 title">支付方式</div>
+						<div class="col-md-2 data">
+							<select class="form-control select2" style="width: 100%"
+									name="payType">
+								<option value="0" selected="selected">支付宝</option>
+								<option value="1">微信</option>
+								<option value="2">其他</option>
+							</select>
+						</div>
+							<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>
 					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
 				</div>
-			</security:authorize>
+				 <!--工具栏-->
+				<div class="box-tools text-center">
+					<button type="submit" class="btn bg-maroon">保存</button>
+					<button type="button" class="btn bg-default"
+						onclick="history.back(-1);">返回</button>
+				</div>
+				<!--工具栏/--> </section>
+				<!-- 正文区域 /-->
+			</form>
 		</div>
 		<!-- 内容区域 /-->
 
 		<!-- 底部导航 -->
 		<footer class="main-footer">
-			<jsp:include page="footer.jsp"/>
-		 </footer>
+			<jsp:include page="footer.jsp"/></footer>
 		<!-- 底部导航 /-->
 
 	</div>
+
 
 	<script
 		src="${pageContext.request.contextPath}/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -263,8 +205,6 @@
 		src="${pageContext.request.contextPath}/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/plugins/knob/jquery.knob.js"></script>
-	<script
-			src="${pageContext.request.contextPath}/plugins/jQuery/jquery-3.3.1.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/plugins/daterangepicker/moment.min.js"></script>
 	<script
@@ -327,17 +267,56 @@
 		src="${pageContext.request.contextPath}/plugins/ionslider/ion.rangeSlider.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
 	<script>
-		<security:authorize access="hasAnyRole('ADMINISTRATOR','MANAGER','SALESPERSON','EXECUTIVE')">
-		$(function (){
-				$.post("${pageContext.request.contextPath}/maininfo/getInfo.do",{},function (data){
-					$("#users").text(data.users);
-					$("#travellers").text(data.travllers);
-					$("#orders").text(data.orders);
-					$("#products").text(data.products);
-				});
-		});
-		</security:authorize>
+		 flag=1;
+		function addtravel(){
+			$("#traveller").append('<div class="row data-type">\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">游客姓名</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<input type="text" class="form-control" name="travellers['+flag+'].name"\n' +
+					'\t\t\t\t\t\t\t\t   placeholder="游客姓名" value="">\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">电话号码</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<input type="text" class="form-control" name="travellers['+flag+'].phoneNum"\n' +
+					'\t\t\t\t\t\t\t\t   placeholder="电话号码" value="">\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">证件类型</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<select class="form-control select2" style="width: 100%"\n' +
+					'\t\t\t\t\t\t\t\t\tname="travellers['+flag+'].credentialsType">\n' +
+					'\t\t\t\t\t\t\t\t<option value="0" selected="selected">身份证</option>\n' +
+					'\t\t\t\t\t\t\t\t<option value="1">护照</option>\n' +
+					'\t\t\t\t\t\t\t\t<option value="2">军官证</option>\n' +
+					'\t\t\t\t\t\t\t</select>\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">证件号码</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<input type="text" class="form-control" name="travellers['+flag+'].credentialsNum"\n' +
+					'\t\t\t\t\t\t\t\t   placeholder="证件号码" value="">\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">性别</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<select class="form-control select2" style="width: 100%"\n' +
+					'\t\t\t\t\t\t\t\t\tname="travellers['+flag+'].sex">\n' +
+					'\t\t\t\t\t\t\t\t<option value="男" selected="selected">男</option>\n' +
+					'\t\t\t\t\t\t\t\t<option value="女">女</option>\n' +
+					'\t\t\t\t\t\t\t</select>\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-2 title">游客类型</div>\n' +
+					'\t\t\t\t\t\t<div class="col-md-4 data">\n' +
+					'\t\t\t\t\t\t\t<select class="form-control select2" style="width: 100%"\n' +
+					'\t\t\t\t\t\t\t\t\tname="travellers['+flag+++'].travellerType">\n' +
+					'\t\t\t\t\t\t\t\t<option value="0" selected="selected">成人</option>\n' +
+					'\t\t\t\t\t\t\t\t<option value="1">儿童</option>\n' +
+					'\t\t\t\t\t\t\t</select>\n' +
+					'\t\t\t\t\t\t</div>\n' +
+					'\t\t\t\t\t\t<button type="button" class="btn bg-olive btn-success btn-xs col-md-12 title" onclick="addtravel()"><p style="font-size: 18px;font-weight: bold;letter-spacing: 8px">增加游客</p></button>\n' +
+					'\t\t\t\t\t</div>');
+		}
 		$(document).ready(function() {
 			// 选择框
 			$(".select2").select2();
@@ -356,12 +335,9 @@
 				liObj.addClass("active");
 			}
 		}
-
-		$(document).ready(function() {
-			// 激活导航位置
-			setSidebarActive("admin-index");
-		});
 	</script>
+
+
 </body>
 
 </html>

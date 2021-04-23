@@ -12,7 +12,10 @@
     <security:http pattern="/login.jsp" security="none"/>
     <security:http pattern="/failer.jsp" security="none"/>
     <security:http pattern="/register/save.do" security="none"/>
+    <security:http pattern="/product/findAllFromVisitor.do" security="none"/>
+    <security:http pattern="/product/searchByNameFromVistitor.do" security="none"/>
     <security:http pattern="/pages/regist.jsp" security="none"/>
+    <security:http pattern="/pages/visitor.jsp" security="none"/>
     <security:http pattern="/css/**" security="none"/>
     <security:http pattern="/img/**" security="none"/>
     <security:http pattern="/plugins/**" security="none"/>

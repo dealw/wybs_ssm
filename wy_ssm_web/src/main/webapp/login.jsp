@@ -33,7 +33,7 @@
 			position:absolute;z-index:0;
 		}
 		#regist{
-			width: 15%;
+			width: 30%;
 			text-align: left;
 			position:absolute;z-index:1;
 		}
@@ -72,8 +72,10 @@
 			</div>
 		</form>
 
-		<div id="regist"> <a href="${pageContext.request.contextPath}/pages/regist.jsp">会员注册</a></div><br>
-
+		<div id="regist">
+			<a href="${pageContext.request.contextPath}/pages/regist.jsp">会员注册</a>
+			<a href="${pageContext.request.contextPath}/product/findAllFromVisitor.do?page=1&size=4" style="padding-left: 45%">游客访问</a>
+		</div><br>
 
 	</div>
 	<!-- /.login-box-body -->
